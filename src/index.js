@@ -10,6 +10,7 @@ await askWeight();
 await askHeight();
 await askAge();
 await getGender();
+await calculateREE();
 
 // REE- get weight, height, age, gender
 async function askWeight() {
@@ -55,6 +56,16 @@ async function getGender() {
   }
 }
 
+async function calculateREE() {
+  let ree = 0;
+  if (male) {
+    ree = 10 * inputWeight + 6.25 * inputHeight - 5 * inputAge + 5;
+  } else {
+    ree = 10 * inputWeight + 6.25 * inputHeight - 5 * inputAge - 161;
+  }
+  console.log(ree);
+  return ree;
+}
 // 10 x weight (kg) + 6.25 x height (cm) – 5 x age (y) + 5 = REE- MEN
 // 10 x weight (kg) + 6.25 x height (cm) – 5 x age (y) – 161 = REE- WOMEN
 
