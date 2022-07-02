@@ -8,12 +8,14 @@ let inputHeight;
 let inputAge;
 let ree;
 let tdee;
+let calories;
 await askWeight();
 await askHeight();
 await askAge();
 await getGender();
 await calculateREE();
 await calculateTDEE(ree);
+await goals(tdee);
 
 // REE- get weight, height, age, gender
 async function askWeight() {
@@ -95,6 +97,21 @@ async function calculateTDEE(ree) {
 }
 
 // for weight loss or gains?
+async function goals(tdee) {
+  const answers = await inquirer.prompt({
+    name: "weight_goal",
+    type: "list",
+    message: "What is your goal?\n",
+    choices: ["Weight Loss", "Muscle gains"],
+  });
+  if (answers.weight_goal === "Weight Loss") {
+    calories = tdee - tdee * 0.2;
+  } else {
+    calories = tdee + tdee * 0.2;
+  }
+  console.log(Math.floor(calories));
+  return Math.floor(calories);
+}
 // Weight loss TDEE = 3,250 – (3250 x .20) = 2,600 Calories
 // Weight gain TDEE = 3,250 + (3250 x .20) = 3,900 Calories
 
