@@ -15,7 +15,7 @@ await askAge();
 await getGender();
 await calculateREE();
 await calculateTDEE(ree);
-await goals(tdee);
+await goals(tdee, inputWeight);
 
 // REE- get weight, height, age, gender
 async function askWeight() {
@@ -97,7 +97,8 @@ async function calculateTDEE(ree) {
 }
 
 // for weight loss or gains?
-async function goals(tdee) {
+async function goals(tdee, inputWeight) {
+  let proteinIntake;
   const answers = await inquirer.prompt({
     name: "weight_goal",
     type: "list",
@@ -106,21 +107,15 @@ async function goals(tdee) {
   });
   if (answers.weight_goal === "Weight Loss") {
     calories = tdee - tdee * 0.2;
+    proteinIntake = inputWeight * 0.65;
   } else {
     calories = tdee + tdee * 0.2;
+    proteinIntake = inputWeight * 1.2;
   }
-  console.log(Math.floor(calories));
+  console.log(`Your daily calories intake is ${Math.floor(calories)}`);
+  console.log(`Your daily protein intake is ${proteinIntake} grams`);
   return Math.floor(calories);
 }
-// Weight loss TDEE = 3,250 – (3250 x .20) = 2,600 Calories
-// Weight gain TDEE = 3,250 + (3250 x .20) = 3,900 Calories
-
-/*
-Daily protein calories
-When already lean and lifting heavy for bodybuilding use a measure of 1 g of protein per pound of body weight.
-Most people can use a more balanced approach and use .825 g protein per pound since most people are carrying fat tissue which skews the “1 gram per pound rule.”
-For people with a lot of excess fat weight or people who don’t do a lot of strength training, use .65 grams per pound of body weight.
-*/
 
 /*
 How to calculate fat grams per day
