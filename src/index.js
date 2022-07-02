@@ -105,7 +105,7 @@ async function goals(tdee, inputWeight) {
   });
   if (answers.weight_goal === "Weight Loss") {
     calories = tdee - tdee * 0.2;
-    proteinIntake = inputWeight * 0.65;
+    proteinIntake = inputWeight * 0.8;
   } else {
     calories = tdee + tdee * 0.2;
     proteinIntake = inputWeight * 1.5;
