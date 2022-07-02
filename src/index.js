@@ -15,7 +15,7 @@ async function askWeight() {
   const weight = await inquirer.prompt({
     name: "weight",
     type: "input",
-    message: "Please enter your weight in kg",
+    message: "Please enter your weight in kg\n",
   });
   inputWeight = weight.inputWeight;
 }
@@ -24,7 +24,7 @@ async function askHeight() {
   const height = await inquirer.prompt({
     name: "height",
     type: "input",
-    message: "Please enter your height in cm",
+    message: "Please enter your height in cm\n",
   });
   inputHeight = height.inputHeight;
 }
@@ -33,7 +33,7 @@ async function askAge() {
   const age = await inquirer.prompt({
     name: "age",
     type: "input",
-    message: "Please enter your age",
+    message: "Please enter your age\n",
   });
   inputAge = age.inputAge;
 }
