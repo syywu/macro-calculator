@@ -56,10 +56,8 @@ async function getGender() {
   });
   if (answers.gender === "Female") {
     female = answers.gender;
-    console.log(female);
   } else {
     male = answers.gender;
-    console.log(male);
   }
 }
 
@@ -69,7 +67,6 @@ async function calculateREE() {
   } else {
     ree = 10 * inputWeight + 6.25 * inputHeight - 5 * inputAge - 161;
   }
-  console.log(ree);
   return ree;
 }
 
@@ -94,7 +91,6 @@ async function calculateTDEE(ree) {
     default:
       tdee = ree * 1.725;
   }
-  console.log(tdee);
   return tdee;
 }
 
