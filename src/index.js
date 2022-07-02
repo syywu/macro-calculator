@@ -122,7 +122,8 @@ async function dailyFat(calories) {
 }
 
 async function dailyCarbs(calories) {
-  let carbsIntake = Math.floor(calories / 2 + calories / 10 / 2);
+  let carbsCal = Math.floor(calories / 2 + calories / 10 / 2);
+  let carbsIntake = carbsCal / 4;
   console.log(`Your daily carbs intake is ${carbsIntake} grams`);
   return carbsIntake;
 }
