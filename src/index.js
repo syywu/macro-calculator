@@ -8,6 +8,7 @@ let inputHeight;
 let inputAge;
 await askWeight();
 await askHeight();
+await askAge();
 
 // REE- get weight, height, age, gender
 async function askWeight() {
@@ -26,6 +27,15 @@ async function askHeight() {
     message: "Please enter your height in cm",
   });
   inputHeight = height.inputHeight;
+}
+
+async function askAge() {
+  const age = await inquirer.prompt({
+    name: "age",
+    type: "input",
+    message: "Please enter your age",
+  });
+  inputAge = age.inputAge;
 }
 
 // 10 x weight (kg) + 6.25 x height (cm) – 5 x age (y) + 5 = REE- MEN
