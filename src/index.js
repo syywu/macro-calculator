@@ -17,6 +17,7 @@ await calculateREE();
 await calculateTDEE(ree);
 await goals(tdee, inputWeight);
 await dailyFat(calories);
+await dailyCarbs(calories);
 
 // REE- get weight, height, age, gender
 async function askWeight() {
@@ -118,19 +119,14 @@ async function goals(tdee, inputWeight) {
   return Math.floor(calories);
 }
 
-/*
-How to calculate fat grams per day
-3,250 Calories x 0.25 = 812.5 Calories
-Divide 812.5 by 9 (9 calories per gram of fat) = 90.27g Fat (which I’d round down to 90 g).
- */
 async function dailyFat(calories) {
   let fatIntake = Math.floor((calories * 0.25) / 9);
   console.log(`Your daily fat intake is ${fatIntake} grams`);
   return fatIntake;
 }
 
-/*
-How to calculate carb grams per day
-We started with 3,250 Calories. We allocated 644 calories (161 g) to protein, 813 calories (90 g) to fat and we now allocate the rest, 1793 calories, to carbohydrates.
-Since 1g of carb equals 4 calories we divide 1793 by 4 and get 448 g Carbohydrates.
-*/
+async function dailyCarbs(calories) {
+  let carbsIntake = Math.floor(calories / 2 + calories / 10 / 2);
+  console.log(`Your daily carbs intake is ${carbsIntake} grams`);
+  return carbsIntake;
+}
