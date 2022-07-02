@@ -9,33 +9,50 @@ let inputAge;
 await askWeight();
 await askHeight();
 await askAge();
+await getGender();
 
 // REE- get weight, height, age, gender
 async function askWeight() {
   const weight = await inquirer.prompt({
-    name: "weight",
+    name: "input_weight",
     type: "input",
     message: "Please enter your weight in kg\n",
   });
-  inputWeight = weight.inputWeight;
+  inputWeight = weight.input_weight;
 }
 
 async function askHeight() {
   const height = await inquirer.prompt({
-    name: "height",
+    name: "input_height",
     type: "input",
     message: "Please enter your height in cm\n",
   });
-  inputHeight = height.inputHeight;
+  inputHeight = height.input_height;
 }
 
 async function askAge() {
   const age = await inquirer.prompt({
-    name: "age",
+    name: "input_age",
     type: "input",
     message: "Please enter your age\n",
   });
-  inputAge = age.inputAge;
+  inputAge = age.input_age;
+}
+
+async function getGender() {
+  const answers = await inquirer.prompt({
+    name: "gender",
+    type: "list",
+    message: "Please select your gender\n",
+    choices: ["Female", "Male"],
+  });
+  if (answers.gender === "Female") {
+    female = answers.gender;
+    console.log(female);
+  } else {
+    male = answers.gender;
+    console.log(male);
+  }
 }
 
 // 10 x weight (kg) + 6.25 x height (cm) – 5 x age (y) + 5 = REE- MEN
