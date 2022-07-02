@@ -6,11 +6,14 @@ let male;
 let inputWeight;
 let inputHeight;
 let inputAge;
+let ree;
+let tdee;
 await askWeight();
 await askHeight();
 await askAge();
 await getGender();
 await calculateREE();
+await calculateTDEE(ree);
 
 // REE- get weight, height, age, gender
 async function askWeight() {
@@ -57,7 +60,6 @@ async function getGender() {
 }
 
 async function calculateREE() {
-  let ree = 0;
   if (male) {
     ree = 10 * inputWeight + 6.25 * inputHeight - 5 * inputAge + 5;
   } else {
@@ -66,10 +68,31 @@ async function calculateREE() {
   console.log(ree);
   return ree;
 }
-// 10 x weight (kg) + 6.25 x height (cm) – 5 x age (y) + 5 = REE- MEN
-// 10 x weight (kg) + 6.25 x height (cm) – 5 x age (y) – 161 = REE- WOMEN
 
 // TDEE- sedentary (REE X 1.2), light  (REE x 1.375), moderate (REE x 1.55), v active (REE x 1.725)
+async function calculateTDEE(ree) {
+  const answers = await inquirer.prompt({
+    name: "TDEE",
+    type: "list",
+    message: "What is your activity level?\n",
+    choices: ["Sedentary", "Light", "Moderate", "Heavy"],
+  });
+  switch (answers.TDEE) {
+    case "Sedentary":
+      tdee = ree * 1.2;
+      break;
+    case "Light":
+      tdee = ree * 1.375;
+      break;
+    case "Moderate":
+      tdee = ree * 1.55;
+      break;
+    default:
+      tdee = ree * 1.725;
+  }
+  console.log(tdee);
+  return tdee;
+}
 
 // for weight loss or gains?
 // Weight loss TDEE = 3,250 – (3250 x .20) = 2,600 Calories
