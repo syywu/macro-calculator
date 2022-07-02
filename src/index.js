@@ -108,7 +108,7 @@ async function goals(tdee, inputWeight) {
     proteinIntake = inputWeight * 0.65;
   } else {
     calories = tdee + tdee * 0.2;
-    proteinIntake = inputWeight * 1.2;
+    proteinIntake = inputWeight * 1.5;
   }
   console.log(`Your daily calories intake is ${Math.floor(calories)}`);
   console.log(`Your daily protein intake is ${proteinIntake} grams`);
