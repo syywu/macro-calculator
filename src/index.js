@@ -112,18 +112,15 @@ async function goals(tdee, inputWeight) {
   }
   console.log(`Your daily calories intake is ${Math.floor(calories)}`);
   console.log(`Your daily protein intake is ${proteinIntake} grams`);
-  return Math.floor(calories);
 }
 
 async function dailyFat(calories) {
   const fatIntake = Math.floor((calories * 0.25) / 9);
   console.log(`Your daily fat intake is ${fatIntake} grams`);
-  return fatIntake;
 }
 
 async function dailyCarbs(calories) {
   const carbsCal = Math.floor(calories / 2 + calories / 10 / 2);
   const carbsIntake = carbsCal / 4;
   console.log(`Your daily carbs intake is ${carbsIntake} grams`);
-  return carbsIntake;
 }
