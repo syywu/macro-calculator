@@ -1,14 +1,13 @@
 import inquirer from "inquirer";
-import { createSpinner } from "nanospinner";
 
-let female;
-let male;
-let inputWeight;
-let inputHeight;
-let inputAge;
-let ree;
-let tdee;
-let calories;
+let female: string;
+let male: string;
+let inputWeight!: number;
+let inputHeight: number;
+let inputAge: number;
+let ree!: number;
+let tdee!: number;
+let calories!: number;
 await askWeight();
 await askHeight();
 await askAge();
@@ -20,7 +19,7 @@ await dailyFat(calories);
 await dailyCarbs(calories);
 
 // REE- get weight, height, age, gender
-async function askWeight() {
+async function askWeight(): Promise<void> {
   const weight = await inquirer.prompt({
     name: "input_weight",
     type: "input",
@@ -29,7 +28,7 @@ async function askWeight() {
   inputWeight = weight.input_weight;
 }
 
-async function askHeight() {
+async function askHeight(): Promise<void> {
   const height = await inquirer.prompt({
     name: "input_height",
     type: "input",
@@ -38,7 +37,7 @@ async function askHeight() {
   inputHeight = height.input_height;
 }
 
-async function askAge() {
+async function askAge(): Promise<void> {
   const age = await inquirer.prompt({
     name: "input_age",
     type: "input",
@@ -47,7 +46,7 @@ async function askAge() {
   inputAge = age.input_age;
 }
 
-async function getGender() {
+async function getGender(): Promise<void> {
   const answers = await inquirer.prompt({
     name: "gender",
     type: "list",
@@ -61,7 +60,7 @@ async function getGender() {
   }
 }
 
-async function calculateREE() {
+async function calculateREE(): Promise<number> {
   if (male) {
     ree = 10 * inputWeight + 6.25 * inputHeight - 5 * inputAge + 5;
   } else {
@@ -71,7 +70,7 @@ async function calculateREE() {
 }
 
 // TDEE- sedentary (REE X 1.2), light  (REE x 1.375), moderate (REE x 1.55), v active (REE x 1.725)
-async function calculateTDEE(ree) {
+async function calculateTDEE(ree: number): Promise<number> {
   const answers = await inquirer.prompt({
     name: "TDEE",
     type: "list",
@@ -95,7 +94,7 @@ async function calculateTDEE(ree) {
 }
 
 // for weight loss or gains?
-async function goals(tdee, inputWeight) {
+async function goals(tdee: number, inputWeight: number): Promise<void> {
   let proteinIntake;
   const answers = await inquirer.prompt({
     name: "weight_goal",
@@ -114,12 +113,12 @@ async function goals(tdee, inputWeight) {
   console.log(`Your daily protein intake is ${proteinIntake} grams`);
 }
 
-async function dailyFat(calories) {
+async function dailyFat(calories: number): Promise<void> {
   const fatIntake = Math.floor((calories * 0.25) / 9);
   console.log(`Your daily fat intake is ${fatIntake} grams`);
 }
 
-async function dailyCarbs(calories) {
+async function dailyCarbs(calories: number): Promise<void> {
   const carbsCal = Math.floor(calories / 2 + calories / 10 / 2);
   const carbsIntake = carbsCal / 4;
   console.log(`Your daily carbs intake is ${carbsIntake} grams`);
